@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- our CSS -->
+	<link rel="shortcut icon" href="/static/icons/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../static/style/style.css">
+    <title>HICCO - A Privacy-First Search Engine</title>
+</head>
+
+<body>
+
+    <main id="main" class="container-fluid justify-content-center">
+        <header class="row g-0">
+            <div class="col slider-icon">
+                <i class="bi bi-list" onclick="openNav();"></i>
+            </div>
+            <div class="col settings-icon">
+                <i class="bi bi-gear" onclick="toggleSettings();"></i>
+            </div>
+
+            <div id="settings" class="settings">
+                <div class="triangle"></div>
+                <div class="theme-option dark-option" onclick="setDarkTheme('landing');">Dark Theme</div>
+                <div class="theme-option light-option" onclick="setLightTheme('landing');">Light Theme</div>
+            </div>
+        </header>
+
+        <nav id="sidenav" class="sidenav">
+            <div class="nav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#" class="social-link"><img src="../static/icons/facebook-logo-png-9006.png" alt="">
+                    Facebook</a>
+                <a href="#" class="social-link"><img src="../static/icons/logo-instagram-png-13554.png" alt="">
+                    Instagram</a>
+                <a href="#" class="social-link"><img src="../static/icons/twitter.svg" alt=""> Twitter</a>
+                <a href="#" class="social-link"><img src="../static/icons/linkedin-png-5847.png" alt=""> Linkedin</a>
+            </div>
+        </nav>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6 row m-0 p-0 g-0 search-container">
+                <div class="col-12 logo">
+                    <h1><a href="/">HICCO</a></h1>
+                </div>
+                <form class="col-12 row g-0 search" action="{{url_for('search')}}" method="GET">
+                    <div class="col">
+                        <input type="text" name="query">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="pe-2">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer class="col-12 row justify-content-center container-fluid text-center">
+            <div class="col-8 col-md-4 col-lg-3 d-flex justify-content-center align-items-center play">
+                <img src="../static/icons/google-play-badge.png" alt="" class="img-fluid" id="play">
+            </div>
+            <div class="col-12 text-center">
+                &copy;2021 HICCO
+            </div>
+        </footer>
+    </main>
+
+
+    <!-- Bootstrap Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <!-- our JavaScript -->
+    <script src="../static/script/script.js"></script>
+    <script>
+        window.onload = function () {
+            setHeight();
+            theme = localStorage.getItem("theme");
+            if (theme == "light") {
+                setLightTheme('landing');
+            }
+            else if (theme == "dark") {
+                setDarkTheme('landing');
+            }
+            else {
+                setDarkTheme('landing');
+                localStorage.setItem("theme", "dark");
+            }
+        }
+        window.addEventListener("resize", setHeight);
+        play = document.getElementById("play");
+        function setHeight() {
+            if (window.innerHeight < 500) {
+                console.log(play)
+                play.style.display = "none";
+            }
+            else {
+                play.style.display = "flex";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

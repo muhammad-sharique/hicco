@@ -1,0 +1,418 @@
+/* google fonts-Roboto ###### code: font-family: 'Roboto', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap'); 
+:root{
+    --primary: #023e8a;
+    --primary-light: #6964ff;
+    --primary-dark: #000fb6;
+
+    /* change secondry color to black and white according to theme  */
+    --secondry:#ffffff; 
+
+
+    --bg-primary:#1c1c1c;
+    --bg-secondry:#434343;
+
+    /* --bg-primary:#f5f5f6;
+    --bg-secondry:#c2c2c3; */
+
+    --fg-primary:#f5f5f6;
+    --fg-secondry:#c2c2c3;
+
+    /* --background-color: #1c1c1c;
+    --background-light:#434343;
+    --background-dark:#000000;
+
+    --foreground-color:#f5f5f6;
+    --foreground-dark:#c2c2c3;
+    --foreground-light:#ffffff; */
+    
+}
+@font-face {
+  font-family: 'league spraton';
+  src: url(league-spartan.bold.ttf);
+}
+/* some common styles */
+a{
+    text-decoration: none;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-primary);   
+}
+html {
+    overflow-x: hidden;
+}
+ .settings-icon, .slider-icon{
+    font-size: 1.5rem;
+    cursor: pointer;
+    color:var(--fg-primary);
+}
+footer{
+    text-align: center;
+    color: var(--fg-primary);
+}
+/* here main part starts */
+#main .settings-icon{
+    text-align: right;
+    margin-right: 2px;
+}
+#main{
+    position: relative;
+    height: 100vh !important;
+}
+
+/* navigation part is here */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding-top: 60px;
+}
+.nav{
+    background-color:var(--bg-secondry);
+    position: relative;
+    bottom: 60px;
+    border-bottom-right-radius: 20px;
+}
+.nav a:nth-child(2){
+    margin-top: 25px;
+    z-index: 200;
+}
+.nav img{
+    width:25px;
+    height:auto;
+}
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: var(--fg-secondry);
+  display: block;
+  transition: 0.3s;
+}
+.sidenav .social-link{
+    font-size: 15px;
+    width: 100%;
+    transition:0.2s;
+}
+
+.sidenav .social-link:hover {
+  text-decoration: underline;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: -20px;
+  right: 5px;
+  font-size: 2rem !important;
+  margin-left: 50px;
+  font-size: 50px;
+}
+/* settings box */
+
+.settings{
+    position: absolute;
+    display:none;
+    width: 250px !important;
+    top: 4.1rem;
+    right: 7px;
+    background: var(--secondry);
+    border-radius: 5px;
+    border-top-right-radius: 0;
+    z-index: 3;
+}
+
+#wide-settings{
+    top: 4.3rem;
+    right: 21px;
+}
+.triangle {
+    position: relative;
+	background-color: var(--secondry);
+	text-align: left;
+    position: absolute;
+    right: 6.3px;
+    top: -1.2rem;
+    
+}
+.triangle:before,
+.triangle:after {
+	content: '';
+	position: absolute;
+	background-color: inherit;
+    
+}
+.triangle,
+.triangle:before,
+.triangle:after {
+	width:  1em;
+	height: 1em;
+	border-top-right-radius: 30%;
+    
+}
+
+.triangle {
+	transform: rotate(-60deg) skewX(-30deg) scale(1,.866);
+    
+}
+.triangle:before {
+	transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%);
+    
+}
+.triangle:after {
+	transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
+}
+.theme-option{
+    font-size: 125%;
+    margin:5px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.dark-option{
+    background: #1c1c1c;
+    color: #f5f5f6;
+    border: solid 1px white;
+}
+.light-option{
+    background: #f5f5f6;
+    color: va#1c1c1c;
+    border:solid 1px black;
+}
+.theme-option.active{
+    border: solid 3px var(--primary-dark);
+}
+/* logo part starts here */
+
+.logo h1{
+    text-align: center;
+    font-size: 3.5rem;
+    font-family: 'league spraton';
+    color: var(--fg-primary);
+    letter-spacing: 2px;
+}
+.logo h1 a{
+    text-decoration: none;
+    color: inherit;
+}
+.search-container {
+    margin-top: 100px !important;
+    padding:0 20px !important;
+}
+#main .search {
+    box-shadow : 0 0 2px 2px #5f5f5f;
+    border-radius: 25px;
+}
+#main .search input[type="text"]{
+    background: var(--bg-secondry);
+    outline: none;
+    box-shadow: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+    padding-left: 20px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    color: var(--fg-primary);
+}
+
+#main .search button {
+    border: none;
+    outline: none;
+    background: var(--bg-secondry);
+    color: var(--fg-primary);
+    font-size: 1.5rem;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+#main .play{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#main footer{
+   position: absolute;
+   bottom: 10px;
+   color:var(--fg-primary);
+}
+
+/* main part ends here */
+
+/* search results start now */
+.res{
+    background-color: var(--bg-primary);
+}
+.res header{
+    background: black;
+}
+
+.res .logo {
+    font-family: 'Spartan', sans-serif;
+    font-family: 'league spraton';
+    font-size: 2rem;
+    font-weight: 800;
+    color:var(--fg-primary);
+}
+.res .logo a{
+    text-decoration: none;
+    color: inherit;
+}
+.res .header .search {
+    box-shadow : 0 0 2px 2px rgb(99, 99, 99);
+    border-radius: 25px;
+    height: 35px;
+
+}
+
+.res .header .search input[type="text"]{
+    background: var(--bg-primary);
+    outline: none;
+    box-shadow: none;
+    border: none;
+    width: 100%;
+    height: 35px;
+    padding: 5px 10px;
+    padding-left: 20px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    color: var(--fg-primary);
+}
+
+.res .header .search button {
+    border: none;
+    outline: none;
+    height: 35px;
+    background: var(--bg-primary);
+    font-size: 1.4rem;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding-right: 10px;
+    color: var(--fg-primary);
+}
+.res .header .search button i{
+    position: relative;
+    bottom: 3px;
+}
+.res .slider-icon{
+    text-align: right;
+    font-size: 2rem;
+    cursor: pointer;
+    padding-right: 20px;
+}
+
+.res .link-pages {
+    margin: 0 5px;
+    font-size: 115%;
+    font-weight: 600;
+    color: var(--fg-primary);
+}
+.res .link-pages a{
+    text-decoration: none;
+    color: var(--fg-primary);
+}
+.res .link-active {
+    color: var(--fg-primary);
+    border-bottom: solid var(--fg-primary) 2px;
+}
+.res .link-pages:hover {
+    color: var(--fg-secondry);
+}
+.res .link-settings{
+    color: var(--fg-primary);
+}
+
+/* hedaer for mobile header */
+
+.res .header-mobile {
+    padding:0 5px;
+    display: none !important;
+}
+.res .header-mobile .search-container {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.res .header-mobile .link-settings {
+    font-size: 80%;
+}
+.res .header-mobile .link-pages {
+    font-size: 90%;
+}
+.res .header-mobile .slider-icon{
+    text-align: left;
+    font-size: 2rem;
+}
+.res .header-mobile .settings-icon{
+    text-align: right;
+    font-size: 1.5rem;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+/* switch to webview after 800 pixels */
+@media only screen and (max-width: 800px) {
+    
+    .res .header-mobile {
+        display:flex !important;
+    }
+
+    .res .header-wide {
+        display: none !important;
+    }
+}
+
+
+/* main results section starts here */
+.res .main{
+    padding: 5px 10px;
+}
+.res .main .result-box{
+    margin-bottom: 20px;
+}
+
+.res .main p{
+    margin:0;
+}
+.res .main a{
+    text-decoration: none;
+    color:unset;
+}
+.res .main p.url{
+    text-decoration: underline;
+    font-size: 90%;
+    overflow: hidden;
+    color: var(--fg-primary);
+}
+.res .main p.title {
+    color: var(--secondry);
+    font-size: 135%;
+}
+.res .main p.desc {
+    color: var(--secondry);
+    font-size: 110%;
+}
+.res .main p.title a:hover {
+    text-decoration: underline;
+}
+
+
+/* here comes our images part */
+.image-container img{
+    height: 130px;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content:center !important;
+}
+.img-text a{
+    color: var(--fg-primary) !important;
+    text-decoration: underline !important;
+    text-align: left !important;
+}
