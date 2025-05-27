@@ -1,0 +1,8 @@
+{% macro show_error(message) %}
+<div class="col-12 text-center error-container" style="margin-top: 2rem;">
+    <h3 style="color:var(--fg-primary)">{{ message }}</h3>
+    <p class="mt-3">
+        <a href="/" class="btn btn-primary">Back to Home</a>
+    </p>
+</div>
+{% endmacro %}

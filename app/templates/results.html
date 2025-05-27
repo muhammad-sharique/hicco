@@ -1,0 +1,197 @@
+{% from "error_message.html" import show_error %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- our CSS -->
+	<link rel="shortcut icon" href="/static/icons/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../static/style/style.css">
+    <title>{{query}} - results in HICCO</title>
+</head>
+
+<body class="res">
+    <header class="header header-wide row g-0 pt-1 pb-1 d-flex align-items-center">
+        <div class="col-auto slider-icon ms-2">
+            <i class="bi bi-list" onclick="openNav();"></i>
+        </div>
+        <div class="col-2 logo text-center">
+            <a href="/">HICCO</a>
+        </div>
+        <form class="col-6 col-md-8 col-sm-9  row g-0 search" action="{{url_for('search')}}" method="GET">
+            <div class="col">
+                <input type="text" name="query" value="{{query}}">
+            </div>
+            <div class="col-auto">
+                <button type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </form>
+        <div class="col text-right slider-icon">
+            <i class="bi bi-gear" onclick="toggleWideSettings();"></i>
+        </div>
+        <div id="wide-settings" class="settings">
+            <div class="triangle"></div>
+            <div class="theme-option dark-option" onclick="setDarkTheme('results-wide');">Dark Theme</div>
+            <div class="theme-option light-option" onclick="setLightTheme('results-wide');">Light Theme</div>
+        </div>
+        <div class="col-12 row g-0 mt-1 pb-1">
+            <div class="col-2">
+            </div>
+            <div class="col-6 col-md-8 col-sm-9 row justify-content-right">
+                <div class="col">
+                    <span class="link-pages link-active">All</span>
+                    <span class="link-pages">Images</span>
+                    <span class="link-pages">Videos</span>
+                    <span class="link-pages">News</span>
+                </div>
+                <div class="col-auto">
+                    <span class="link-settings">Settings <i class="bi bi-caret-down-fill"></i></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav id="sidenav" class="sidenav">
+        <div class="nav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#" class="social-link"><img src="../static/icons/facebook-logo-png-9006.png" alt="">
+                Facebook</a>
+            <a href="#" class="social-link"><img src="../static/icons/logo-instagram-png-13554.png" alt="">
+                Instagram</a>
+            <a href="#" class="social-link"><img src="../static/icons/twitter.svg" alt=""> Twitter</a>
+            <a href="#" class="social-link"><img src="../static/icons/linkedin-png-5847.png" alt=""> Linkedin</a>
+        </div>
+    </nav>
+
+    <header class="header header-mobile row g-0 pt-1 pb-1 d-flex align-items-center">
+        <div class="col-4 text-left slider-icon">
+            <i class="bi bi-list" onclick="openNav();"></i>
+        </div>
+        <div class="col-4 logo text-center">
+            <a href="/">HICCO</a>
+        </div>
+        <div class="col-4 text-right settings-icon">
+            <i class="bi bi-gear" onclick="toggleMobileSettings();"></i>
+        </div>
+        <div id="mobile-settings" class="settings">
+            <div class="triangle"></div>
+            <div class="theme-option dark-option" onclick="setDarkTheme('results-mobile');">Dark Theme</div>
+            <div class="theme-option light-option" onclick="setLightTheme('results-mobile');">Light Theme</div>
+        </div>
+        <form class="col-12  row g-0 search" action="{{url_for('search')}}" method="GET">
+            <div class="col">
+                <input type="text" name="query" value="{{query}}">
+            </div>
+            <div class="col-auto">
+                <button type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </form>
+
+        <div class="col-12 row g-0 mt-1 pb-1 nav-links">
+            <div class="col-2">
+            </div>
+            <div class="col-12 row justify-content-right">
+                <div class="col">
+                    <span class="link-pages link-active">All</span>
+                    <!-- <span class="link-pages"> <a href="{{url_for('search_images')}}?query={{query}}">Images</a></span> -->
+                    <span class="link-pages"> <a href="#">Images</a></span>
+
+                    <span class="link-pages">Videos</span>
+                    <span class="link-pages">News</span>
+                </div>
+                <div class="col-auto">
+                    <span class="link-settings">Settings <i class="bi bi-caret-down-fill"></i></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="row g-0">
+        <div class="col-12 col-lg-2">
+        </div>
+        <div class="col-12 row col-lg-8 main">
+            {% if error %}
+                {{ show_error(error_message) }}
+            {% else %}
+            {% for result in results %}
+            <div class="col-12 result-box">
+                <p class="title"><a href="{{result.url}}">
+                        {{result.title | truncate(50, True) }}
+
+                    </a></p>
+                <p class="url">
+                    <a href="{{result.url}}">
+                        {{result.url | truncate(80, True)}}
+                    </a>
+                </p>
+                <p class="desc">
+                    {{result.desc | truncate(250, True) }}
+                </p>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+
+
+        </div>
+        <footer class="col-12 text-center">
+            No More Results Here!!! <br>
+            &copy;2021 HICCO
+        </footer>
+    </main>
+
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <script src="../static/script/script.js"></script>
+    <script>
+        window.onload = function () {
+            theme = localStorage.getItem("theme");
+            if (theme == "light") {
+                if (window.innerWidth <= 800) {
+                    setLightTheme('results-mobile');
+                }
+                else {
+                    setLightTheme('results-wide');
+                }
+
+            }
+            else if (theme == "dark") {
+                if (window.innerWidth <= 800) {
+                    setDarkTheme('results-mobile');
+                }
+                else {
+                    setDarkTheme('results-wide');
+                }
+            }
+            else {
+                if (window.innerWidth <= 800) {
+                    setDarkTheme('results-mobile');
+                }
+                else {
+                    setDarkTheme('results-wide');
+                }
+                localStorage.setItem("theme", "dark");
+            }
+        }
+    </script>
+</body>
+
+</html>

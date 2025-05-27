@@ -1,0 +1,8 @@
+flask
+beautifulsoup4
+requests
+selenium
+mongoengine
+python-dotenv
+gunicorn
+lxml
